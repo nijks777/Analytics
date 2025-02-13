@@ -1,0 +1,441 @@
+﻿@{
+    ViewData["Title"] = "Resources";
+}
+
+<style>
+    /* Reset any default margins that might be causing spaces */
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Hero section styles */
+    .resources-hero {
+        position: relative;
+        width: 100vw;
+        min-height: 500px;
+        background-color: #0B2F3F;
+        overflow: hidden;
+        margin: 0;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+
+    .resources-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to right, #12143F 40%, transparent);
+    }
+
+    .resources-image {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 50%;
+        opacity: 0.7;
+    }
+
+    .resources-content {
+        position: relative;
+        z-index: 10;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 64px 24px;
+    }
+
+    .resources-card {
+        max-width: 600px;
+        border-radius: 8px;
+        padding: 48px;
+    }
+
+    .resources-title {
+        font-size: 48px;
+        font-weight: bold;
+        color: white;
+        line-height: 1.2;
+        margin-bottom: 24px;
+    }
+
+    .resources-description {
+        font-size: 18px;
+        color: #e5e5e5;
+        line-height: 1.6;
+    }
+
+    /* Blog section styles */
+    .blog-section {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .blog-title {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 40px;
+        color: #000;
+    }
+
+    /* Filter styles */
+    .filter-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .filter-item {
+        margin: 0;
+        padding: 0;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: #666;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+    }
+
+        .filter-btn:hover {
+            color: #0039a6;
+        }
+
+        .filter-btn.active {
+            color: #0039a6;
+            border-bottom: 2px solid #0039a6;
+        }
+
+    /* Blog grid and card styles */
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .blog-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+    .blog-card-content {
+        padding: 20px;
+    }
+
+    .blog-card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+
+    .blog-card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .blog-tag {
+        font-size: 14px;
+        color: #666;
+    }
+
+        .blog-tag:not(:last-child):after {
+            content: ",";
+            margin-right: 5px;
+        }
+
+    /* Responsive styles */
+    @@media (max-width: 768px) {
+        .resources-card
+
+    {
+        padding: 32px;
+        margin: 0 auto;
+    }
+
+    .resources-title {
+        font-size: 36px;
+    }
+
+    .resources-description {
+        font-size: 16px;
+    }
+
+    .filter-list {
+        gap: 10px;
+    }
+
+    .filter-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    }
+</style>
+<style>
+    /* Filter List Styles */
+    .filter-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    .filter-item {
+        margin: 0;
+        padding: 0;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: #666;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+    }
+
+        .filter-btn:hover {
+            color: #0039a6;
+        }
+
+        .filter-btn.active {
+            color: #0039a6;
+            border-bottom: 2px solid #0039a6;
+        }
+
+    @@media (max-width: 768px) {
+        .filter-list
+
+    {
+        gap: 10px;
+    }
+
+    .filter-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    }
+</style>
+
+<!-- Add this JavaScript for filter functionality -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Get the filter value
+                const filterValue = this.getAttribute('data-filter');
+
+                // You can add your filtering logic here
+                console.log('Filter selected:', filterValue);
+                // Example: filterBlogPosts(filterValue);
+            });
+        });
+    });
+
+    // Example filter function - implement based on your needs
+    function filterBlogPosts(filter) {
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        blogCards.forEach(card => {
+            if (filter === 'all') {
+                card.style.display = 'block';
+            } else {
+                // Add logic to show/hide based on categories
+                // You'll need to add data attributes to your blog cards
+                const categories = card.getAttribute('data-categories');
+                if (categories && categories.includes(filter)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+    }
+</script>
+
+<div class="resources-hero">
+    <div class="resources-overlay">
+        <img src="~/images/911.jpg" alt="Innovation concept" class="resources-image">
+    </div>
+
+    <div class="resources-content">
+        <div class="resources-card">
+            <h1 class="resources-title">
+                Discover Insights<br>
+                Trends and Inspiration
+            </h1>
+            <p class="resources-description">
+                Explore diverse topics, gain insights, and stay informed with our engaging blog, delivering valuable content for curious minds.
+            </p>
+        </div>
+    </div>
+</div>
+<!-- Blog Section -->
+<section class="blog-section">
+    <h2 class="blog-title">Our Latest Blogs</h2>
+
+    <!-- Replace the existing blog-filters div with this: -->
+    <div class="blog-filters">
+        <ul class="filter-list" id="blogFilters">
+            <li class="filter-item">
+                <button class="filter-btn active" data-filter="all">View all</button>
+            </li>
+            <li class="filter-item">
+                <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
+            </li>
+            <li class="filter-item">
+                <button class="filter-btn" data-filter="data-strategy">Data Strategy</button>
+            </li>
+            <li class="filter-item">
+                <button class="filter-btn" data-filter="learning-development">Learning & Development</button>
+            </li>
+            <li class="filter-item">
+                <button class="filter-btn" data-filter="net">.Net</button>
+            </li>
+            <li class="filter-item">
+                <button class="filter-btn" data-filter="oracle-erp">Oracle ERP</button>
+            </li>
+            <li class="filter-item">
+                <button class="filter-btn" data-filter="software-engineering">Software Engineering</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="blog-grid">
+        <!-- Blog Card 1 -->
+        <a href="/Home/ERPSustainablePractices" class="blog-card" data-categories="learning-development">
+            <img src="~/images/2149092252.jpg" alt="ERP Solutions">
+            <div class="blog-card-content">
+                <h3 class="blog-card-title">How ERP Solutions Contribute to Sustainable Practices</h3>
+                <div class="blog-card-tags">
+                    <span class="blog-tag">Learning & Development</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Blog Card 2 -->
+        <a href="/Home/CloudDatabaseInnovation" class="blog-card" data-categories="data-strategy,oracle-erp,software-engineering">
+            <img src="~/images/890.jpg" alt="Cloud Database">
+            <div class="blog-card-content">
+                <h3 class="blog-card-title">Innovating Cloud Database Management Systems: A Journey</h3>
+                <div class="blog-card-tags">
+                    <span class="blog-tag">Data Strategy</span>
+                    <span class="blog-tag">Oracle ERP</span>
+                    <span class="blog-tag">Software Engineering</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Blog Card 3 -->
+        <a href="/Home/DatabaseComparison" class="blog-card" data-categories="net,data-engineering,data-strategy,software-engineering">
+            <img src="~/images/7118840_3405302.jpg" alt="Database Comparison">
+            <div class="blog-card-content">
+                <h3 class="blog-card-title">Choosing Between Relational and NoSQL Databases: A Comprehensive Guide</h3>
+                <div class="blog-card-tags">
+                    <span class="blog-tag">.Net</span>
+                    <span class="blog-tag">Data Engineering</span>
+                    <span class="blog-tag">Data Strategy</span>
+                    <span class="blog-tag">Software Engineering</span>
+                </div>
+            </div>
+        </a>
+    </div>    </div>
+</section>
+<!-- Add this JavaScript for filter functionality -->
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Get the filter value from button text
+                const filterValue = this.textContent.trim();
+
+                // Call filter function
+                filterBlogPosts(filterValue);
+            });
+        });
+    });
+
+    function filterBlogPosts(filter) {
+        const blogCards = document.querySelectorAll('.blog-card');
+
+        blogCards.forEach(card => {
+            // Get all tags in the current card
+            const tags = card.querySelectorAll('.blog-tag');
+            const tagTexts = Array.from(tags).map(tag => tag.textContent.trim());
+
+            if (filter === 'View all') {
+                card.style.display = 'block';
+            } else {
+                // Check if the filter matches any of the card's tags
+                if (tagTexts.includes(filter)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        });
+    }
+</script>

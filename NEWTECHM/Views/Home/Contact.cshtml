@@ -1,0 +1,710 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Remove any container margins/padding */
+    .container, .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .contact-section {
+        background: linear-gradient(to right, #003366, #006699);
+        padding: 80px 0;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        left: 0;
+        right: 0;
+    }
+
+    .contact-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .contact-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .contact-description {
+        font-size: 1.1rem;
+        max-width: 600px;
+        opacity: 0.9;
+        line-height: 1.6;
+    }
+
+    .floating-icons {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50%;
+        height: 100%;
+        opacity: 0.8;
+    }
+
+    .contact-card {
+        background: rgba(9, 25, 72, 0.9);
+        padding: 40px;
+        border-radius: 10px;
+        max-width: 600px;
+    }
+
+    .decorative-icons {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        display: flex;
+        gap: 30px;
+    }
+
+        .decorative-icons i {
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.3);
+            transition: color 0.3s ease;
+        }
+
+            .decorative-icons i:hover {
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+    /* Updated Contact Form Section Styles */
+    .contact-form-section {
+        padding: 60px 0;
+        background: #fff;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+    }
+
+    /* Updated Container Layout */
+    .contact-form-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Updated Company Info Layout */
+    .company-info {
+        display: flex;
+        gap: 40px;
+        width: 100%;
+    }
+
+    /* New Image Container */
+    .image-container {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    /* New Company Details Container */
+    .company-details-container {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+    }
+
+    .contact-image-container {
+        width: 100%;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    .contact-image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .contact-icons-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 20px;
+        border-radius: 25px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+        .contact-icons-overlay i {
+            font-size: 20px;
+            color: #003366;
+        }
+
+        .contact-icons-overlay .icon-divider {
+            width: 1px;
+            height: 20px;
+            background: #ccc;
+        }
+
+    .contact-message {
+        margin-bottom: 30px;
+    }
+
+    .company-details {
+        margin-top: 30px;
+    }
+
+        .company-details h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+    .contact-info {
+        margin-top: 20px;
+    }
+
+        .contact-info a {
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #003366;
+        }
+
+    .business-hours {
+        margin-top: 20px;
+        color: #666;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .action-btn {
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #003366;
+        border: 1px solid #003366;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .join-btn {
+        background: #003366;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 992px) {
+        .company-info
+
+    {
+        flex-direction: column;
+    }
+
+    .image-container,
+    .company-details-container {
+        width: 100%;
+    }
+
+    .contact-title {
+        font-size: 2.5rem;
+    }
+
+    .floating-icons {
+        opacity: 0.3;
+    }
+
+    .decorative-icons {
+        bottom: 20px;
+        right: 20px;
+    }
+
+        .decorative-icons i {
+            font-size: 2rem;
+        }
+
+    .contact-content {
+        padding: 0 15px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    }
+
+    @@media (max-width: 768px) {
+        .contact-title
+
+    {
+        font-size: 2rem;
+    }
+
+    .contact-card {
+        padding: 30px;
+    }
+
+    .company-details h2 {
+        font-size: 20px;
+    }
+
+    }
+    <!--
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Remove any container margins/padding */
+    .container, .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .contact-section {
+        background: linear-gradient(to right, #003366, #006699);
+        padding: 80px 0;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        left: 0;
+        right: 0;
+    }
+
+    .contact-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .contact-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .contact-description {
+        font-size: 1.1rem;
+        max-width: 600px;
+        opacity: 0.9;
+        line-height: 1.6;
+    }
+
+    .floating-icons {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50%;
+        height: 100%;
+        opacity: 0.8;
+    }
+
+    .contact-card {
+        background: rgba(9, 25, 72, 0.9);
+        padding: 40px;
+        border-radius: 10px;
+        max-width: 600px;
+    }
+
+    .decorative-icons {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        display: flex;
+        gap: 30px;
+    }
+
+        .decorative-icons i {
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.3);
+            transition: color 0.3s ease;
+        }
+
+            .decorative-icons i:hover {
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+    .contact-form-section {
+        padding: 60px 0;
+        background: #fff;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+    }
+
+    .contact-form-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .company-info {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .contact-form {
+        flex: 1;
+        min-width: 300px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .select-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+    .country-select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        appearance: none;
+        background: #f5f5f5;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: #000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .company-details {
+        margin-top: 30px;
+    }
+
+        .company-details h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+    .contact-info {
+        margin-top: 20px;
+    }
+
+        .contact-info a {
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #003366;
+        }
+
+    .business-hours {
+        margin-top: 20px;
+        color: #666;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .action-btn {
+        padding: 10px 20px;
+        text-decoration: none;
+        color: #003366;
+        border: 1px solid #003366;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .join-btn {
+        background: #003366;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+    .contact-image-container {
+        width: 100%;
+        margin-bottom: 30px;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .contact-image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .contact-icons-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 20px;
+        border-radius: 25px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+        .contact-icons-overlay i {
+            font-size: 20px;
+            color: #003366;
+        }
+
+        .contact-icons-overlay .icon-divider {
+            width: 1px;
+            height: 20px;
+            background: #ccc;
+        }
+
+    @@media (max-width: 768px) {
+        .contact-title
+
+    {
+        font-size: 2.5rem;
+    }
+
+    .floating-icons {
+        opacity: 0.3;
+    }
+
+    .decorative-icons {
+        bottom: 20px;
+        right: 20px;
+    }
+
+        .decorative-icons i {
+            font-size: 2rem;
+        }
+
+    .contact-section,
+    .contact-form-section {
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+    }
+
+    .contact-content,
+    .contact-form-container {
+        padding: 0 15px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    }
+    -->
+</style>
+
+<div class="contact-section">
+    <div class="contact-content">
+        <div class="contact-card">
+            <h1 class="contact-title">Reach Us for Assistance,<br>We're Here to Help</h1>
+            <p class="contact-description">Questions or feedback? Connect with us. Our dedicated team is ready to assist you. Reach out anytime.</p>
+        </div>
+    </div>
+    <div class="floating-icons">
+        <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+                <pattern id="pattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M10,1 L19,10 L10,19 L1,10 L10,1" fill="none" stroke="rgba(255,255,255,0.1)" />
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#pattern)" />
+        </svg>
+        <div class="decorative-icons">
+            <i class="fas fa-phone"></i>
+            <i class="fas fa-envelope"></i>
+        </div>
+    </div>
+</div>
+
+<div class="contact-form-section">
+    <div class="contact-form-container">
+        <div class="company-info">
+            <div class="image-container">
+                <div class="contact-image-container">
+                    <img src="/images/82.jpg" alt="Contact Us" class="contact-image">
+                    <div class="contact-icons-overlay">
+                        <i class="fas fa-phone"></i>
+                        <div class="icon-divider"></div>
+                        <i class="fas fa-envelope"></i>
+                        <div class="icon-divider"></div>
+                        <i class="fas fa-at"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="company-details-container">
+                <div class="contact-message">
+                    <p>If you have any inquiries or require further information, kindly provide your details and describe your question. We'll respond promptly. Thank you!</p>
+                </div>
+                <div class="company-details">
+                    <h2>AnalyticsDemo Technologies Pvt. Ltd.</h2>
+                    <p>A-9, A Block, Sector 59, Noida, Uttar Pradesh</p>
+                    <p>201301, India</p>
+
+                    <div class="contact-info">
+                        <a href="mailto:sales@AnalyticsDemo.com">
+                            <i class="fas fa-envelope"></i>
+                            sales@AnalyticsDemo.com
+                        </a>
+                        <a href="tel:+919870370700">
+                            <i class="fas fa-phone"></i>
+                            +91-9999999999
+                        </a>
+                    </div>
+
+                    <div class="business-hours">
+                        <p>Monday - Friday</p>
+                        <p>09:30AM - 06:30PM</p>
+                    </div>
+                    <!--
+                    <div class="action-buttons">
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-map-marker-alt"></i>
+                            View on Map
+                        </a>
+                        <a href="#" class="action-btn">
+                            <i class="fas fa-directions"></i>
+                            Get Directions
+                        </a>
+                    </div>
+
+                    <a asp-controller="Home" asp-action="Career" class="join-btn">Know More →</a>
+                    -->
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="contact-form">
+            <h2>Get in touch!</h2>
+            <p>Got questions? Ideas? Fill out the form below to get our proposal.</p>
+
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Full Name" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+
+                <div class="form-group">
+                    <div class="select-wrapper">
+                        <select class="country-select" required>
+                            <option value="India">India (भारत)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="Phone Number" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Subject" required>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" rows="4" placeholder="Your Message (optional)"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>-->
+    </div>
+</div>

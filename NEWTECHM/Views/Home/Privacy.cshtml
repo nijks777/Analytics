@@ -1,0 +1,508 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+<style>
+    .about-us-hero {
+        position: relative; /* Changed from absolute to relative */
+        width: 100vw; /* Full viewport width */
+        margin-left: -50vw; /* Negative margin technique */
+        left: 50%; /* Center the element */
+        padding: 0;
+        background-size: cover;
+        background-position: center;
+        min-height: 500px;
+        overflow: hidden; /* Prevent horizontal scrollbar */
+    }
+
+        .about-us-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(15, 25, 65, 0.95) 50%, rgba(15, 25, 65, 0.8) 100%);
+            z-index: 0; /* Changed from -1 to 0 */
+        }
+
+        .about-us-hero .container {
+            position: relative;
+            z-index: 1; /* Ensure content appears above gradient */
+        }
+
+        .about-us-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-us-hero p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+    /* Add responsive adjustments */
+    @@media screen and (max-width: 768px) {
+        .about-us-hero h1
+
+    {
+        font-size: 2.5rem;
+    }
+
+    .about-us-hero p {
+        font-size: 1.1rem;
+    }
+
+    }
+
+    .about-content-section {
+        padding: 4rem 0;
+    }
+
+    .about-image-container {
+        position: relative;
+        margin-bottom: 2rem;
+        height: 500px; /* Fixed height for better control */
+        display: flex;
+        align-items: center;
+    }
+
+    .about-image-person {
+        position: absolute;
+        left: 0;
+        width: 75%; /* Increased width for better visibility */
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+    }
+
+    .about-image-overlay {
+        position: absolute;
+        right: 0;
+        bottom: 10%;
+        width: 45%; /* Adjusted width */
+        max-width: 400px;
+        border-radius: 12px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        z-index: 2;
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        padding: 20px;
+    }
+
+    .services-accordion {
+        margin-top: 2rem;
+    }
+
+    .service-item {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+        .service-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+    .service-header {
+        padding: 1rem 1.5rem;
+        background: #fff;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #0d6efd;
+        font-weight: 500;
+    }
+
+        .service-header:hover {
+            background: #f8f9fa;
+        }
+
+    .service-content {
+        padding: 1rem 1.5rem;
+        display: none;
+    }
+
+        .service-content.active {
+            display: block;
+        }
+
+    .chevron-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .active .chevron-icon {
+        transform: rotate(180deg);
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 991px) {
+        .about-image-container
+
+    {
+        height: 400px;
+    }
+
+    .about-image-person {
+        width: 70%;
+    }
+
+    .about-image-overlay {
+        width: 50%;
+        right: 5%;
+    }
+
+    }
+
+    @@media (max-width: 768px) {
+        .about-image-container
+
+    {
+        height: 350px;
+    }
+
+    .about-image-person {
+        width: 100%;
+    }
+
+    .about-image-overlay {
+        width: 60%;
+        right: 50%;
+        transform: translateX(50%);
+        bottom: -50px;
+    }
+
+    }
+
+    .mission-vision-section {
+        padding: 4rem 0;
+        background: #f8f9fa;
+    }
+
+    .circle-image-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .circle-image {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .mission-vision-card {
+        background: linear-gradient(135deg, #0a2151 0%, #1a3a7d 100%);
+        border-radius: 12px;
+        padding: 2rem;
+        margin: 1rem 0;
+        color: white;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        position: relative;
+        overflow: hidden;
+    }
+
+        .mission-vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M0 0 L200 100 L200 0 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .mission-vision-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .mission-vision-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0;
+            position: relative;
+        }
+
+    .floating-dots {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+    }
+
+    @@media (max-width: 768px) {
+        .circle-image-container
+
+    {
+        margin-bottom: 2rem;
+    }
+
+    .mission-vision-card {
+        margin: 1rem 0;
+    }
+
+    }
+
+    .what-sets-apart {
+        padding: 5rem 0;
+        background-color: #E6E9FF;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        overflow: hidden;
+    }
+
+        .what-sets-apart .container {
+            max-width: 100%;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+    @@media (min-width: 1400px) {
+        .what-sets-apart .container
+
+    {
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+
+    }
+
+    /* Optional: If you want to ensure cards maintain proper spacing */
+    .what-sets-apart .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 3rem;
+        color: #333;
+    }
+
+    .feature-card {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+    .feature-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #333;
+    }
+
+    .feature-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #666;
+        margin-bottom: 0;
+    }
+
+    @@media (max-width: 768px) {
+        .section-title
+
+    {
+        font-size: 2rem;
+    }
+
+    .feature-card {
+        margin-bottom: 2rem;
+    }
+
+    }
+</style>
+
+<div class="about-us-hero">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="text-white display-4 fw-bold mb-4">We are AnalyticsDemo</h1>
+                <p class="text-white mb-4">At AnalyticsDemo, we're transforming IT consulting...</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="~/images/2614.jpg" alt="Team" class="img-fluid rounded shadow-lg" />
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add this HTML after your hero section -->
+<div class="about-content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-image-container">
+                    <img src="~/images/850.jpg" alt="Business Professionals" class="about-image-person">
+                    <img src="~/images/4546131_3922.jpg" alt="Digital Services Icons" class="about-image-overlay">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <p class="lead mb-4">
+                    At AnalyticsDemo, we're on a mission to redefine the landscape of IT consulting. Founded on the
+                    principles of innovation, expertise, and client-centricity, we aim to be more than just another
+                    consulting firm – we're your strategic partners in navigating the complex world of technology.
+                </p>
+
+                <div class="services-accordion">
+                    <div class="service-item">
+                        <div class="service-header" onclick="toggleService(this)">
+                            Quality Services
+                            <span class="chevron-icon">▼</span>
+                        </div>
+                        <div class="service-content">
+                            <p>
+                                Utilizing our proficiency, we meticulously design tailored solutions that perfectly align with
+                                your objectives.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-header" onclick="toggleService(this)">
+                            Customer Satisfaction
+                            <span class="chevron-icon">▼</span>
+                        </div>
+                        <div class="service-content">
+                            <p>We prioritize customer satisfaction through dedicated support and personalized solutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-header" onclick="toggleService(this)">
+                            Response to Change / Agility
+                            <span class="chevron-icon">▼</span>
+                        </div>
+                        <div class="service-content">
+                            <p>Our agile approach ensures quick adaptation to changing requirements and market conditions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mission-vision-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="circle-image-container">
+                    <img src="~/images/339.jpg" alt="Office Building with Digital Overlay" class="circle-image">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mission-vision-card mb-4">
+                    <h2>Our Mission</h2>
+                    <p>Acting as a catalyst in empowering businesses to propel their success with power of digital technology and knowledge, while providing personalized experience at the pace of industry's development.</p>
+                    <span class="floating-dots" style="top: 20px; right: 40px;"></span>
+                    <span class="floating-dots" style="bottom: 30px; right: 80px;"></span>
+                </div>
+
+                <div class="mission-vision-card">
+                    <h2>Our Vision</h2>
+                    <p>To establish our footprints in the emerging digital age as a leading strategic partner to companies around the world.</p>
+                    <span class="floating-dots" style="top: 40px; right: 60px;"></span>
+                    <span class="floating-dots" style="bottom: 20px; right: 30px;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="what-sets-apart">
+    <div class="container">
+        <h2 class="section-title">What Sets Us Apart?</h2>
+
+        <div class="row">
+            <!-- Expertise Card -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card">
+                    <img src="~/images/13569.jpg" alt="Team discussing business analytics" class="feature-image">
+                    <h3 class="feature-title">Expertise</h3>
+                    <p class="feature-description">
+                        With a collective wealth of experience and a commitment to continuous learning, our team stays at the forefront of technological advancements.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Innovation Card -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card">
+                    <img src="~/images/24058074_28_sept_19_19.jpg" alt="Digital innovation concept" class="feature-image">
+                    <h3 class="feature-title">Innovation</h3>
+                    <p class="feature-description">
+                        Innovation isn't just a buzzword for us - it's the core of our philosophy. We embrace emerging technologies and leverage them to unlock new opportunities for your business.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Partnership Card -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-card">
+                    <img src="~/images/15184.jpg" alt="Business handshake" class="feature-image">
+                    <h3 class="feature-title">Partnership</h3>
+                    <p class="feature-description">
+                        We view our client relationships as long-term partnerships. Your success is our success, and we're dedicated to support you at every step of your digital journey.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add this JavaScript at the end of your page -->
+<script>
+    function toggleService(element) {
+        const content = element.nextElementSibling;
+        const chevron = element.querySelector('.chevron-icon');
+
+        // Close all other service contents
+        document.querySelectorAll('.service-content').forEach(item => {
+            if (item !== content) {
+                item.classList.remove('active');
+            }
+        });
+
+        document.querySelectorAll('.chevron-icon').forEach(icon => {
+            if (icon !== chevron) {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Toggle the clicked service
+        content.classList.toggle('active');
+        chevron.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+</script>

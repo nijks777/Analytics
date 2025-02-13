@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NEWTECHM</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/NEWTECHM.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .main-content {
+            flex: 1 0 auto;
+            padding-bottom: 40px;
+        }
+
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 0.75rem 1rem; /* Slightly increased padding */
+            min-height: 80px; /* Ensure navbar is tall enough */
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+            margin-right: 2rem;
+        }
+
+        .nav-item {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .navbar-brand img {
+            height: 60px; /* Increased from 40px */
+            width: auto;
+            margin-right: 10px; /* Added some spacing after the logo */
+            transition: all 0.3s ease; /* Smooth transition for any changes */
+        }
+
+
+        .navbar-brand {
+            padding: 0;
+            font-weight: bold;
+            color: #0046cc !important;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+            .navbar-brand span {
+                color: #333;
+            }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: all 0.3s ease;
+        }
+
+            .nav-link:hover {
+                color: #0046cc !important;
+            }
+
+            .nav-link.active {
+                background-color: #0046cc !important;
+                color: white !important;
+                border-radius: 4px;
+            }
+
+        .get-in-touch {
+            background-color: #0046cc;
+            color: white !important;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+            .get-in-touch:hover {
+                background-color: #003399;
+            }
+
+        /* Enhanced Dropdown Styling */
+        .nav-item.dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 8px 0;
+            margin-top: 10px;
+            min-width: 220px;
+            animation: dropdown-fade 0.2s ease-in-out;
+        }
+
+        .dropdown-item {
+            padding: 10px 20px;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+            .dropdown-item:hover {
+                background-color: #f8f9fa;
+                padding-left: 24px;
+                color: #0047AB;
+            }
+
+        /* Optional: Add a subtle arrow indicator */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background: white;
+            transform: rotate(45deg);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            border-left: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Animation for smooth appearance */
+        @@keyframes dropdown-fade {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        /* Active state styling */
+        .dropdown-item.active,
+        .dropdown-item:active {
+            background-color: #0047AB;
+            color: white;
+        }
+
+        /* Hover effect for main dropdown toggle */
+        .nav-link.dropdown-toggle:hover {
+            color: #0047AB !important;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        footer {
+            background-color: #0F1744;
+            color: white;
+            padding: 40px 0;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .footer-section ul li {
+                margin-bottom: 10px;
+            }
+
+                .footer-section ul li a {
+                    color: white;
+                    text-decoration: none;
+                    font-size: 14px;
+                    transition: opacity 0.3s;
+                }
+
+                    .footer-section ul li a:hover {
+                        opacity: 0.8;
+                    }
+
+        .footer-contact {
+            color: white;
+            font-size: 14px;
+        }
+
+            .footer-contact p {
+                margin-bottom: 10px;
+            }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+            .newsletter-form input {
+                padding: 8px 12px;
+                border: none;
+                border-radius: 4px;
+                flex-grow: 1;
+            }
+
+            .newsletter-form button {
+                padding: 8px 20px;
+                background-color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+            .social-links a {
+                color: white;
+                font-size: 20px;
+                transition: opacity 0.3s;
+            }
+
+                .social-links a:hover {
+                    opacity: 0.8;
+                }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            width: auto;
+            margin-bottom: 20px;
+        }
+
+
+        .follow-section h4 {
+            color: white;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo.png" alt="Company Logo" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")"
+                               asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @(ViewContext.RouteData.Values["action"]?.ToString() == "Privacy" ? "active" : "")"
+                               asp-area="" asp-controller="Home" asp-action="Privacy">About Us</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark @(ViewContext.RouteData.Values["action"]?.ToString() == "Services" ? "active" : "")"
+                               id="servicesDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Services">
+                                Services
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="BusinessAutomation">Business Automation</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="DataAI">Data & AI</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="CloudImplementation">Cloud Implementation</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="DataAnalytics">DataAnalytics</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="MaintenanceSupport">Maintenance & Support</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @(ViewContext.RouteData.Values["action"]?.ToString() == "Resources" ? "active" : "")"
+                               asp-area="" asp-controller="Home" asp-action="Resources">Resources</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark @(ViewContext.RouteData.Values["action"]?.ToString() == "Career" ? "active" : "")"
+                               asp-area="" asp-controller="Home" asp-action="Career">Career</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a class="get-in-touch" asp-area="" asp-controller="Home" asp-action="Contact">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="~/images/logo.png" alt="Company Logo" />
+                    </div>
+
+                    <h3>CONTACT US</h3>
+                    <div class="footer-contact">
+                        <p>📞 +91-999999999</p>
+                        <p>✉️ sales@AnalyticsDemo</p>
+                        <p>📍  Noida</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>QUICK LINKS</h3>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Privacy">About Us</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Work At AnalyticsDemo</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Career">Current Openings</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Resources">Blogs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>SERVICES</h3>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Home" asp-action="BusinessAutomation">Business Automation</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="DataAI">Data & AI</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="CloudImplementation">Cloud Implementation</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="DataAnalytics">DataAnalytics</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="MaintenanceSupport">Maintenance & Support</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-section">
+                    <h3>SUBSCRIBE TO OUR NEWSLETTER</h3>
+                    <div class="footer-contact">
+                        <p>To subscribe to our newsletter, please email us:</p>
+                        <p><a href="mailto:sales@analytics.com" style="color: white; text-decoration: underline;">sales@analytics.com</a></p>
+                    </div>
+                    <div class="follow-section">
+                        <h4>FOLLOW</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 AnalyticsDEMO
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

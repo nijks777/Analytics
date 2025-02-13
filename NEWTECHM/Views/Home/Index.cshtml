@@ -1,0 +1,1367 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Reset body and html to ensure full width */
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Container reset */
+    .container,
+    .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    /* Carousel styles */
+    .carousel-container {
+        width: 100vw;
+        background: linear-gradient(to right, #003366, #004080);
+        overflow: hidden;
+        position: relative;
+        min-height: 500px;
+        margin: 0;
+        padding: 0;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        position: relative;
+    }
+
+    .carousel-wrapper {
+        width: 100%;
+        position: relative;
+        margin: 0;
+    }
+
+    .carousel-slide {
+        display: none;
+        width: 100%;
+        padding: 60px 0;
+        position: relative;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+        .carousel-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+    .content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+
+    .text-content {
+        flex: 1;
+        color: white;
+        max-width: 600px;
+    }
+
+        .text-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .text-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+    .image-content {
+        flex: 1;
+        max-width: 50%;
+    }
+
+        .image-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+    .connect-button {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: white;
+        color: #003366;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+        .connect-button:hover {
+            background-color: #e6e6e6;
+            transform: translateY(-2px);
+        }
+
+    .carousel-dots {
+        text-align: center;
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        z-index: 2;
+    }
+
+    .dot {
+        height: 12px;
+        width: 12px;
+        margin: 0 5px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .dot.active {
+            background-color: white;
+        }
+
+    @@media (max-width: 768px) {
+        .content-wrapper
+
+    {
+        flex-direction: column;
+    }
+
+    .text-content,
+    .image-content {
+        max-width: 100%;
+    }
+
+        .text-content h1 {
+            font-size: 2rem;
+        }
+
+    .carousel-container {
+        min-height: auto;
+    }
+
+    }
+
+    .define-section {
+        padding: 80px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 50px;
+    }
+
+    .define-image {
+        flex: 1;
+        position: relative;
+    }
+
+        .define-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+
+    .star-decoration {
+        position: absolute;
+        color: #003366;
+        font-size: 24px;
+    }
+
+    .star-1 {
+        top: -20px;
+        left: -20px;
+    }
+
+    .star-2 {
+        bottom: 40px;
+        right: -10px;
+    }
+
+    .star-3 {
+        bottom: -10px;
+        left: 40%;
+    }
+
+    .define-content {
+        flex: 1;
+        padding-right: 20px;
+    }
+
+        .define-content h2 {
+            font-size: 2.5rem;
+            color: #003366;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .define-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+    .know-more-btn {
+        display: inline-block;
+        padding: 12px 25px;
+        background: none;
+        color: #003366;
+        border: 2px solid #003366;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+        .know-more-btn:hover {
+            background: #003366;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+    @@media (max-width: 768px) {
+        .define-section
+
+    {
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+
+    .define-content {
+        padding-right: 0;
+    }
+
+        .define-content h2 {
+            font-size: 2rem;
+        }
+
+    .define-image {
+        order: -1;
+        margin-bottom: 30px;
+    }
+
+    }
+
+    .what-we-offer {
+        background-color: #14183E;
+        padding: 80px 0;
+        color: white;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+    }
+
+    .offer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .section-title h3 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+    .services-container {
+        display: flex;
+        gap: 30px;
+    }
+
+    .services-tabs {
+        flex: 0 0 300px;
+    }
+
+    .service-tab {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: all 0.3s ease;
+        color: #14183E; /* Added to ensure text is dark */
+    }
+
+        .service-tab:hover {
+            transform: translateX(10px);
+        }
+
+        .service-tab.active {
+            background: #0046FF;
+            color: white;
+        }
+
+        .service-tab i {
+            font-size: 24px;
+        }
+
+    .service-content {
+        flex: 1;
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        display: none;
+    }
+
+        .service-content.active {
+            display: flex;
+            gap: 30px;
+        }
+
+    .content-text {
+        flex: 1;
+    }
+
+        .content-text h4 {
+            font-size: 2rem;
+            color: #14183E;
+            margin-bottom: 20px;
+        }
+
+        .content-text p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+    .know-more-link {
+        color: #0046FF;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+    }
+
+    .content-image {
+        flex: 1;
+    }
+
+        .content-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+    @@media (max-width: 768px) {
+        .services-container
+
+    {
+        flex-direction: column;
+    }
+
+    .services-tabs {
+        flex: none;
+    }
+
+    .service-content.active {
+        flex-direction: column;
+    }
+
+    }
+</style>
+<!-- Strategic Partner Section -->
+<style>
+    .strategic-section {
+        padding: 80px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .strategic-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+        .strategic-header h2 {
+            font-size: 2.5rem;
+            color: #000;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .strategic-header p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+    .strategic-cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .strategic-card {
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        height: 300px;
+        cursor: pointer;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .strategic-card:hover .card-image {
+        transform: scale(1.1);
+    }
+
+    .card-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+        color: white;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        transition: all 0.3s ease;
+    }
+
+    .strategic-card:hover .card-overlay {
+        background: linear-gradient(to top, rgba(0,35,102,0.9) 0%, rgba(0,35,102,0.8) 100%);
+    }
+
+    .card-content {
+        transform: translateY(60px);
+        transition: transform 0.3s ease;
+    }
+
+    .strategic-card:hover .card-content {
+        transform: translateY(0);
+    }
+
+    .card-blue {
+        background-color: #002366;
+        color: white;
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .card-text {
+        margin-bottom: 20px;
+        line-height: 1.6;
+        opacity: 0;
+        height: 0;
+        transition: all 0.3s ease;
+    }
+
+    .strategic-card:hover .card-text {
+        opacity: 1;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .know-more-btn {
+        display: inline-block;
+        padding: 10px 25px;
+        border: 2px solid white;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        text-align: center;
+        font-weight: 500;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .strategic-card:hover .know-more-btn {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .know-more-btn:hover {
+        background: white;
+        color: #002366;
+    }
+
+    @@media (max-width: 1024px) {
+        .strategic-cards
+
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    }
+
+    @@media (max-width: 768px) {
+        .strategic-cards
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .strategic-header h2 {
+        font-size: 2rem;
+    }
+
+    .strategic-section {
+        padding: 40px 20px;
+    }
+
+    }
+</style>
+<!-- Client Logo Section -->
+<style>
+    .clients-section {
+        background: linear-gradient(135deg, #1a0068 0%, #4b0082 100%);
+        padding: 60px 0;
+        overflow: hidden;
+        position: relative;
+        margin-top: 80px;
+    }
+
+    .section-container {
+        display: flex;
+        flex-direction: column; /* Changed to column to stack items vertically */
+        align-items: center; /* Centers items horizontally */
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .clients-header {
+        flex: none; /* Changed from flex: 0 0 40% */
+        position: relative; /* Changed from sticky */
+        text-align: center; /* Centers the text */
+        margin-bottom: 40px; /* Adds space between header and logos */
+    }
+
+        .clients-header h3 {
+            color: #8B5CF6;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .clients-header h2 {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+    .logo-carousel {
+        display: flex;
+        flex-direction: column; /* Change to column to stack rows */
+        gap: 30px; /* Space between rows */
+        width: fit-content;
+        transform: translateZ(0);
+    }
+
+    .logo-slide {
+        display: flex;
+        gap: 40px;
+        padding: 0 20px;
+        animation: scroll 30s linear infinite; /* Move animation to individual rows */
+        will-change: transform;
+    }
+
+    .logo-container {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        width: 200px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+    }
+    /* Add reverse animation for second row */
+    .logo-slide:nth-child(2) {
+        animation: scroll-reverse 30s linear infinite;
+    }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+    .carousel-track {
+        overflow: hidden;
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    @@keyframes scroll {
+        0%
+
+    {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+
+    }
+    @@keyframes scroll-reverse {
+        0%
+
+    {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+    }
+
+    /* Pause animation on hover */
+    .carousel-track:hover .logo-carousel {
+        animation-play-state: paused;
+    }
+
+    @@media (max-width: 768px) {
+        .clients-header h2
+
+    {
+        font-size: 2rem;
+    }
+
+    .logo-container {
+        width: 150px;
+        height: 60px;
+    }
+
+    }
+</style>
+<style>
+    .blog-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 16px;
+    }
+
+    .blog-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #0066cc;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+
+        .blog-grid a {
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+            .blog-grid a:hover {
+                transform: translateY(-5px);
+            }
+
+    .blog-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .blog-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+    .blog-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+    .blog-card:hover .blog-image img {
+        transform: scale(1.05);
+    }
+
+    .blog-content {
+        padding: 24px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .blog-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            color: #333;
+            line-height: 1.4;
+        }
+
+    .blog-categories {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 16px;
+        line-height: 1.6;
+    }
+
+    .blog-date {
+        font-size: 14px;
+        color: #888;
+        margin-top: auto;
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 1200px) {
+        .blog-grid
+
+    {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    }
+
+    @@media (max-width: 1024px) {
+        .blog-grid
+
+    {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .blog-content {
+        padding: 20px;
+    }
+
+    }
+
+    @@media (max-width: 640px) {
+        .blog-grid
+
+    {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .blog-container {
+        padding: 16px;
+    }
+
+    .blog-title {
+        font-size: 22px;
+        margin-bottom: 24px;
+    }
+
+    .blog-image {
+        height: 180px;
+    }
+
+    }
+</style>
+<style>
+    .contact-banner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f9f9f9; /* Light gray background */
+        padding: 40px;
+        border-radius: 16px;
+        margin: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+
+    .contact-content {
+        flex: 1;
+        padding-right: 40px;
+    }
+
+    .contact-label {
+        color: #0039CB;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 16px;
+        display: block;
+    }
+
+    .contact-heading {
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 1.2;
+        margin: 20px 0 30px 0;
+        color: #000;
+    }
+
+    .contact-button {
+        display: inline-block;
+        color: #0039CB;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        border-bottom: 2px solid #0039CB;
+        padding-bottom: 4px;
+        transition: all 0.3s ease;
+    }
+
+        .contact-button:hover {
+            opacity: 0.8;
+            padding-right: 5px;
+        }
+
+    .contact-image {
+        flex: 1;
+        max-width: 500px;
+    }
+
+        .contact-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+    /* Responsive Design */
+    @@media (max-width: 768px) {
+        .contact-banner
+
+    {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .contact-content {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .contact-heading {
+        font-size: 28px;
+    }
+
+    .contact-image {
+        max-width: 100%;
+    }
+
+    }
+</style>
+<div class="carousel-container">
+    <div class="carousel-wrapper">
+        <!-- First Slide -->
+        <div class="carousel-slide active">
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <h1>Seamless Performance with Business Automation</h1>
+                    <p>From App Maintenance to ERP Integration, our custom solutions automate workflows and ensure uninterrupted performance for your business.</p>
+                    <a href="#" class="connect-button">Connect with Us</a>
+                </div>
+                <div class="image-content">
+                    <img src="/images/2151099226.jpg" alt="Business Meeting" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Slide -->
+        <div class="carousel-slide">
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <h1>Digital Transformation Solutions</h1>
+                    <p>Leverage our expertise to transform your business with cutting-edge digital solutions and technologies.</p>
+                    <a href="#" class="connect-button">Connect with Us</a>
+                </div>
+                <div class="image-content">
+                    <img src="/images/127750.jpg" alt="Digital Technology" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Slide -->
+        <div class="carousel-slide">
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <h1>Enterprise Solutions</h1>
+                    <p>Custom enterprise solutions designed to scale your business and improve operational efficiency.</p>
+                    <a href="#" class="connect-button">Connect with Us</a>
+                </div>
+                <div class="image-content">
+                    <img src="/images/4334361_2279868.jpg" alt="Enterprise Solutions" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Dots Navigation -->
+        <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+</div>
+<div class="define-section">
+    <div class="define-image">
+        <img src="/images/3986.jpg" alt="IT Consultant working">
+        <span class="star-decoration star-1">✦</span>
+        <span class="star-decoration star-2">✦</span>
+        <span class="star-decoration star-3">✦</span>
+    </div>
+    <div class="define-content">
+        <h2>How We Define Ourselves</h2>
+        <p>At Analytics Technologies, we are dedicated to propelling your business forward with cutting-edge IT consulting services. As a premier IT consulting firm, we collaborate with organizations to optimize operations and boost overall performance in today's dynamic digital environment. Whether you need expert guidance, customized IT solutions, or talented professionals to strengthen your team, we're here to support you at every stage.</p>
+        <p>Don't let your business fall behind. Contact us today!</p>
+        <a href="@Url.Action("Privacy", "Home")" class="know-more-btn">Know More →</a>
+    </div>
+</div>
+<div class="what-we-offer">
+    <div class="offer-container">
+        <div class="section-title">
+            <h2>What We Offer</h2>
+            <h3>We Can Help In...</h3>
+        </div>
+
+        <div class="services-container">
+            <div class="services-tabs">
+                <div class="service-tab active">
+                    <i class="fas fa-cogs"></i>
+                    <span>Business Automation</span>
+                </div>
+                <div class="service-tab">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Data & AI</span>
+                </div>
+                <div class="service-tab">
+                    <i class="fas fa-cloud"></i>
+                    <span>Cloud Implementation</span>
+                </div>
+                <div class="service-tab">
+                    <i class="fas fa-link"></i>
+                    <span>DataAnalytics</span>
+                </div>
+                <div class="service-tab">
+                    <i class="fas fa-tools"></i>
+                    <span>Maintenance & Support</span>
+                </div>
+            </div>
+
+            <!-- Business Automation Content -->
+            <div class="service-content active">
+                <div class="content-text">
+                    <h4>Business Automation</h4>
+                    <p>Automate repetitive tasks and create custom solutions tailored to your unique business needs. Our automation expertise helps you boost productivity, reduce errors, and focus on what matters most—growing your business.</p>
+                    <a asp-controller="Home" asp-action="DataAI" class="know-more-link">Know More →</a>
+                        Know More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="content-image">
+                    <img src="/images/2150377138.jpg" alt="Business Automation">
+                </div>
+            </div>
+
+            <!-- Data & AI Content -->
+            <div class="service-content">
+                <div class="content-text">
+                    <h4>Data & AI</h4>
+                    <p>Harness the power of data analytics and artificial intelligence to gain valuable insights and make data-driven decisions. Our AI solutions help you unlock new opportunities, optimize operations, and stay ahead of the competition.</p>
+                    <a asp-controller="Home" asp-action="DataAI" class="know-more-link">Know More →</a>
+                        Know More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="content-image">
+                    <img src="/images/22379.jpg" alt="Data & AI">
+                </div>
+            </div>
+
+            <!-- Cloud Implementation Content -->
+            <div class="service-content">
+                <div class="content-text">
+                    <h4>Cloud Implementation</h4>
+                    <p>Transform your business with secure and scalable cloud solutions. Our cloud implementation services help you migrate, optimize, and manage your infrastructure while ensuring maximum efficiency and minimal downtime.</p>
+                    <a asp-controller="Home" asp-action="CloudImplementation" class="know-more-link">Know More →</a>
+                        Know More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="content-image">
+                    <img src="/images/12071198_SL-101820-36860-11.jpg" alt="Cloud Implementation">
+                </div>
+            </div>
+
+            <!-- Integration Content -->
+            <div class="service-content">
+                <div class="content-text">
+                    <h4>DataAnalytics</h4>
+                    <p>Seamlessly connect your systems and applications to create Business Insights. Our BI services ensure smooth data flow and process coordination across your entire organization.</p>
+                    <a asp-controller="Home" asp-action="DataAnalytics" class="know-more-link">Know More →</a>
+                        Know More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="content-image">
+                    <img src="/images/32908513_290601182837.jpg" alt="Integration">
+                </div>
+            </div>
+
+            <!-- Maintenance & Support Content -->
+            <div class="service-content">
+                <div class="content-text">
+                    <h4>Maintenance & Support</h4>
+                    <p>Keep your systems running smoothly with our comprehensive maintenance and support services. We provide proactive monitoring, timely updates, and dedicated support to ensure your business operations remain uninterrupted.</p>
+                    <a asp-controller="Home" asp-action="MaintenanceSupport" class="know-more-link">Know More →</a>
+
+                        Know More
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="content-image">
+                    <img src="/images/14331.jpg" alt="Maintenance & Support">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="strategic-section">
+    <div class="strategic-header">
+        <h2>Your Strategic IT Partner, Transforming Challenges into Opportunities</h2>
+        <p>AnalyticsDemo stands out as your premier strategic partner in navigating the intricate digital landscape. Our commitment goes beyond conventional services; we are dedicated to transforming challenges into opportunities with a unique fusion of cutting-edge technology and personalized solutions.</p>
+    </div>
+
+    <div class="strategic-cards">
+        <!-- Expertise Card -->
+        <div class="strategic-card">
+            <img src="/images/13506.jpg" alt="Expertise that Matters" class="card-image">
+            <div class="card-overlay">
+                <div class="card-content">
+                    <h3 class="card-title">Expertise that Matters</h3>
+                    <p class="card-text">Leverage our deep industry expertise to drive your business forward with innovative solutions.</p>
+                    <a href="/Home/Privacy" class="know-more-btn">Know More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personalized Solutions Card -->
+        <div class="strategic-card">
+            <img src="/images/495.jpg" alt="Personalized Solutions" class="card-image">
+            <div class="card-overlay">
+                <div class="card-content">
+                    <h3 class="card-title">Personalized Solutions</h3>
+                    <p class="card-text">No two businesses are alike. That's why our approach is never one-size-fits-all.</p>
+                    <a href="/Home/Privacy" class="know-more-btn">Know More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proactive Support Card -->
+        <div class="strategic-card">
+            <img src="/images/6679.jpg" alt="Proactive Support" class="card-image">
+            <div class="card-overlay">
+                <div class="card-content">
+                    <h3 class="card-title">Proactive Support</h3>
+                    <p class="card-text">Get ahead of challenges with our proactive support and maintenance services.</p>
+                    <a href="/Home/Privacy" class="know-more-btn">Know More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collaborative Approach Card -->
+        <div class="strategic-card">
+            <img src="/images/13765.jpg" alt="Collaborative Approach" class="card-image">
+            <div class="card-overlay">
+                <div class="card-content">
+                    <h3 class="card-title">Collaborative Approach</h3>
+                    <p class="card-text">Work together with our expert team to achieve your business goals.</p>
+                    <a href="/Home/Privacy" class="know-more-btn">Know More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clients-section">
+    <div class="clients-header">
+        <h3>Our Clients</h3>
+        <h2>Proudly Serving Our<br>Valued Clients</h2>
+    </div>
+
+    <div class="carousel-track">
+        <div class="logo-carousel">
+            <!-- First Row -->
+            <div class="logo-slide">
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Synergos">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Innova">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Spark Minda">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="NetEdge">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Hero">
+                </div>
+                <!-- Duplicate for seamless scrolling -->
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Synergos">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Innova">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Spark Minda">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="NetEdge">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Hero">
+                </div>
+            </div>
+
+            <!-- Second Row (moves in opposite direction) -->
+            <div class="logo-slide">
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Geo Group">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="E3Live">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="NMS">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Incedo">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Sopra Steria">
+                </div>
+                <!-- Duplicate for seamless scrolling -->
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Geo Group">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="E3Live">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="NMS">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Incedo">
+                </div>
+                <div class="logo-container">
+                    <img src="~/images/ap.png" alt="Sopra Steria">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blog-container">
+    <h2 class="blog-title">Our Latest Blogs</h2>
+    <div class="blog-grid">
+        <!-- Blog Card 1 -->
+        <a href="/Home/ERPSustainablePractices">
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="~/images/2149092252.jpg" alt="ERP Solutions">
+                </div>
+                <div class="blog-content">
+                    <h3>How ERP Solutions Contribute to Sustainable</h3>
+                    <div class="blog-categories">Learning & Development</div>
+                    <div class="blog-date">November 12, 2024</div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Blog Card 2 -->
+        <a href="/Home/CloudDatabaseInnovation">
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="~/images/890.jpg" alt="Cloud Database">
+                </div>
+                <div class="blog-content">
+                    <h3>Innovating Cloud Database Management Systems: A</h3>
+                    <div class="blog-categories">Data Strategy, Oracle ERP, Software Engineering</div>
+                    <div class="blog-date">May 8, 2024</div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Blog Card 3 -->
+        <a href="/Home/DatabaseComparison">
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="~/images/7118840_3405302.jpg" alt="Database Comparison">
+                </div>
+                <div class="blog-content">
+                    <h3>Choosing Between Relational and NoSQL</h3>
+                    <div class="blog-categories">.Net, Data Engineering, Data Strategy, Software Engineering</div>
+                    <div class="blog-date">April 24, 2024</div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Blog Card 4 -->
+        <a href="/Home/CloudDatabaseInnovation">
+            <div class="blog-card">
+                <div class="blog-image">
+                    <img src="~/images/21948351_4300_7_03.jpg" alt="Continuous Learning">
+                </div>
+                <div class="blog-content">
+                    <h3>The Power of Continuous Learning: Why Ongoing</h3>
+                    <div class="blog-categories">Learning & Development</div>
+                    <div class="blog-date">December 22, 2023</div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+</div>
+<div class="contact-banner">
+    <div class="contact-content">
+        <span class="contact-label">Get in Touch with Us Today!</span>
+        <h2 class="contact-heading">Our Team is Here for You. Let's Make Your Experience Exceptional!</h2>
+        <a asp-controller="Home" asp-action="Contact" class="contact-button">Contact Us →</a>
+
+    </div>
+    <div class="contact-image">
+        <img src="/images/13569.jpg" alt="Team Collaboration">
+    </div>
+</div>
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("carousel-slide");
+        let dots = document.getElementsByClassName("dot");
+
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            slides[i].classList.remove("active");
+            dots[i].classList.remove("active");
+        }
+
+        // Show current slide
+        slides[slideIndex-1].style.display = "block";
+        setTimeout(() => {
+            slides[slideIndex-1].classList.add("active");
+        }, 10);
+        dots[slideIndex-1].classList.add("active");
+    }
+
+    // Auto advance slides every 5 seconds
+    setInterval(() => {
+        slideIndex++;
+        showSlides(slideIndex);
+    }, 5000);
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        const serviceContents = document.querySelectorAll('.service-content');
+
+        serviceTabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                serviceTabs.forEach(t => t.classList.remove('active'));
+                serviceContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                serviceContents[index].classList.add('active');
+            });
+        });
+    });
+</script>
+<script>
+    // Optional: Pause animation on hover
+    document.querySelector('.carousel-track').addEventListener('mouseover', function() {
+        document.querySelector('.logo-carousel').style.animationPlayState = 'paused';
+    });
+
+    document.querySelector('.carousel-track').addEventListener('mouseout', function() {
+        document.querySelector('.logo-carousel').style.animationPlayState = 'running';
+    });
+</script>
